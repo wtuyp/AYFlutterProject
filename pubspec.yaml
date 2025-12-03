@@ -33,9 +33,26 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
+  cached_network_image: ^3.4.1 # 网络图片缓存
   cupertino_icons: ^1.0.8
-  dio: ^5.9.0
-  pretty_dio_logger: ^1.4.0
+  device_info_plus: ^12.2.0 # 设备信息
+  dio: ^5.9.0 # http 请求
+  easy_debounce: ^2.0.3  # debounce & throttle
+  easy_refresh: ^3.4.0 # 下拉刷新
+  encrypt: ^5.0.3 # 加密
+  flutter_pickers: ^2.1.9
+  flutter_riverpod: ^3.0.3 # 状态管理
+  flutter_smart_dialog: ^4.9.8+9
+  freezed: ^3.1.0
+  intl: ^0.20.2 # 国际化
+  logger: ^2.6.2 # 日志
+  package_info_plus: ^9.0.0 # 应用信息
+  path_provider: ^2.1.5 # 路径提供器
+  permission_handler: ^12.0.1 # 权限
+  pretty_dio_logger: ^1.4.0 # dio 日志
+  retrofit: ^4.6.0 # dio 网络请求生成器
+  shared_preferences: ^2.5.3 # 本地存储
+  uuid: ^4.5.2 # uuid
 
 
 dev_dependencies:
@@ -47,7 +64,11 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
+  build_runner: ^2.5.4 # 代码生成器
   flutter_lints: ^5.0.0
+  freezed_annotation: ^3.1.0
+  json_serializable: ^6.9.5 # json 序列化
+  retrofit_generator: ^9.7.0 # dio 网络请求生成器
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -61,9 +82,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/image/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
