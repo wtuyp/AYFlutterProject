@@ -2,6 +2,8 @@
 
 A Flutter project that easy to use. Developing...
 
+积累平时开发中用到的一些代码，开发中，仅供参考。
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
