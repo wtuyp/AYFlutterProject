@@ -1,6 +1,6 @@
 # flutter_app
 
-A Flutter project that easy to use.
+A Flutter project that easy to use. Developing...
 
 ## Getting Started
 

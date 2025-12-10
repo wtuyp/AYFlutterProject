@@ -52,6 +52,7 @@ dependencies:
   pretty_dio_logger: ^1.4.0 # dio 日志
   retrofit: ^4.6.0 # dio 网络请求生成器
   shared_preferences: ^2.5.3 # 本地存储
+  signals: ^6.3.0
   uuid: ^4.5.2 # uuid
 
 
