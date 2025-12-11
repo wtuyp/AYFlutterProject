@@ -40,6 +40,7 @@ dependencies:
   easy_debounce: ^2.0.3  # debounce & throttle
   easy_refresh: ^3.4.0 # 下拉刷新
   encrypt: ^5.0.3 # 加密
+  flex_color_scheme: ^8.2.0
   flutter_pickers: ^2.1.9
   flutter_riverpod: ^3.0.3 # 状态管理
   flutter_smart_dialog: ^4.9.8+9

@@ -1,6 +1,8 @@
 
 
 import 'package:app/module/root/root_page.dart';
+import 'package:app/service/theme/theme_provider.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
@@ -77,6 +79,9 @@ class _MyAppState extends ConsumerState<MyApp> {
       home: widget.home,
       navigatorObservers: [FlutterSmartDialog.observer],
       builder: FlutterSmartDialog.init(),
+      theme: FlexThemeData.light(scheme: FlexScheme.blueWhale),
+      darkTheme: FlexThemeData.dark(scheme: FlexScheme.blueWhale),
+      themeMode: ref.watch(themeProvider),
     );
   }
 }
