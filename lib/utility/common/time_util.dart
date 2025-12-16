@@ -1,4 +1,5 @@
 
+import 'package:app/utility/extention/date_time_extension.dart';
 import 'package:intl/intl.dart';
 
 class TimeUtil {
@@ -80,6 +81,19 @@ class TimeUtil {
   /// 获取指定时间的整点时间戳（单位：秒）
   static int getHourPointTimestamp(DateTime dateTime) {
     return DateTime(dateTime.year, dateTime.month, dateTime.day, dateTime.hour).millisecondsSinceEpoch ~/ 1000;
+  }
+
+  /// 格式化时间为相对时间（例如：1天前、1小时前等）
+  /// [time] 时间字符串（格式：yyyy-MM-dd HH:mm:ss 等，请参考 DateTime.parse 方法）
+  static String? formatToRelativeTimeString(String? time) {
+    if (time == null) return null;
+
+    try {
+      final dateTime = DateTime.parse(time);
+      return dateTime.toRelativeTimeString();
+    } catch (e) {
+      return time;
+    }
   }
 
 }
