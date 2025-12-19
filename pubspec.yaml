@@ -46,6 +46,7 @@ dependencies:
   flutter_smart_dialog: ^4.9.8+9
   freezed: ^3.1.0
   intl: ^0.20.2 # 国际化
+  json_annotation: ^4.9.0 # json 序列化
   logger: ^2.6.2 # 日志
   package_info_plus: ^9.0.0 # 应用信息
   path_provider: ^2.1.5 # 路径提供器
