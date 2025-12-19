@@ -10,6 +10,22 @@ class JsonTypeAdapter {
     return null;
   }
 
+  static int? safeParseInt(dynamic value) {
+    if (value is int) return value;
+    if (value is String) {
+      return int.tryParse(value);
+    }
+    return null;
+  }
+
+  static double? safeParseDouble(dynamic value) {
+    if (value is double) return value;
+    if (value is String) {
+      return double.tryParse(value);
+    }
+    return null;
+  }
+
   /// 安全日期解析（支持多种日期格式）
   static DateTime? safeParseDate(dynamic value) {
     if (value is DateTime) return value;
