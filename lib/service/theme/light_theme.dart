@@ -93,7 +93,12 @@ final lightTheme = ThemeData(
     unselectedLabelStyle: TextStyle(fontSize: 14, ),
     indicatorColor: Color(0xff1f2021),
   ),
-  dividerColor: Color(0xffe0e0e0),
+  dividerColor: Color(0xFFEBEDF0),
+  dividerTheme: DividerThemeData(
+    color: Color(0xFFEBEDF0),
+    space: 1,
+    thickness: 1,
+  ),
   shadowColor: Color(0xffe0e0e0),
   switchTheme:  SwitchThemeData(
     thumbColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
@@ -143,6 +148,16 @@ final lightTheme = ThemeData(
       }
       return null; // 使用默认颜色
     }),
+  ),
+  popupMenuTheme: PopupMenuThemeData(
+      color: Colors.white,
+      shape:  RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))
+  ),
+  bottomSheetTheme: BottomSheetThemeData(
+    modalBarrierColor: Color(0x3D000000),
+  ),
+  dialogTheme: DialogTheme(
+    barrierColor: Color(0x3D000000),
   ),
   extensions: [
     AppThemeData(
