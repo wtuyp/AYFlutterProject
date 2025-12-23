@@ -1,5 +1,6 @@
 import 'package:app/service/theme/app_theme_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 
 final _primaryColor = Color(0xff3ba1f5);
@@ -86,6 +87,7 @@ final lightTheme = ThemeData(
     iconTheme: IconThemeData(color: Color(0xff2c2c2c)),
     titleTextStyle: TextStyle(color: Color(0xff1f2021), fontSize: 18, fontWeight: FontWeight.bold,),
     actionsIconTheme: IconThemeData(color: Color(0xff2c2c2c)),
+    systemOverlayStyle: SystemUiOverlayStyle.dark,
   ),
   tabBarTheme: TabBarTheme(
     labelStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w500,),
