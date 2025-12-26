@@ -3,8 +3,8 @@
 import 'package:app/module/demo/json_model_demo_page.dart';
 import 'package:app/module/demo/refresh_demo_page.dart';
 import 'package:app/module/demo/signals_demo_page.dart';
+import 'package:app/module/demo/toast_demo_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 class RootPage extends StatefulWidget {
   const RootPage({super.key});
@@ -19,17 +19,6 @@ class _RootPageState extends State<RootPage> {
   void _incrementCounter() {
     setState(() {
       _counter++;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    SmartDialog.showLoading(msg: '加载中...');
-    Future.delayed(const Duration(seconds: 2), () {
-      SmartDialog.dismiss();
-      SmartDialog.showToast('加载完成');
     });
   }
 
@@ -58,6 +47,12 @@ class _RootPageState extends State<RootPage> {
             title: Text("Json Model Demo"),
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const JsonModelDemoPage()));
+            },
+          ),
+          ListTile(
+            title: Text("Toast Demo"),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const ToastDemoPage()));
             },
           ),
           ListTile(
