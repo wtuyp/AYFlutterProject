@@ -18,7 +18,7 @@ class _ToastDemoPageState extends State<ToastDemoPage> {
     Future.delayed(const Duration(seconds: 2), () {
       HudUtil.dismiss();
 
-      HudUtil.showToast('加载完成');
+      // HudUtil.showToast('加载完成');
 
       HudUtil.showIconToast(
         icon: Icon(
