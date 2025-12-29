@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 /// 缓存工具类
 class CacheUtil {
@@ -17,8 +18,27 @@ class CacheUtil {
     return '${(size / gb).toStringAsFixed(2)}GB';
   }
 
+  /// 获取缓存大小文本
+  static Future<String> getCacheSizeString() async {
+    final int size = await getCacheSize();
+    return formatSize(size);
+  }
+
   /// 获取缓存大小（单位：字节）
   static Future<int> getCacheSize() async {
+    int size = await getTemporaryDirectorySize();
+    size += await getCachedNetworkImageSize();
+    return size;
+  }
+
+  /// 清理所有缓存
+  static Future clearAllCache() async {
+    await clearTemporaryDirectory();
+    await clearCachedNetworkImage();
+  }
+
+  /// 获取临时文件夹大小（单位：字节）
+  static Future<int> getTemporaryDirectorySize() async {
     try {
       Directory tempDir = await getTemporaryDirectory();
       if (await tempDir.exists()) {
@@ -30,8 +50,8 @@ class CacheUtil {
     }
   }
 
-  /// 清理缓存
-  static Future<bool> clearCache() async {
+  /// 清理临时文件夹
+  static Future<bool> clearTemporaryDirectory() async {
     try {
       Directory tempDir = await getTemporaryDirectory();
       if (await tempDir.exists()) {
@@ -42,6 +62,16 @@ class CacheUtil {
     } catch (e) {
       return false;
     }
+  }
+
+  /// 获取网络图片缓存大小（单位：字节）
+  static Future<int> getCachedNetworkImageSize() async {
+    return await DefaultCacheManager().store.getCacheSize();
+  }
+
+  /// 清理缓存网络图片
+  static Future clearCachedNetworkImage() async {
+    return await DefaultCacheManager().store.emptyCache();
   }
 
   /// 递归计算缓存目录大小（单位：字节）
