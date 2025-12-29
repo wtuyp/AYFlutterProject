@@ -1,21 +1,12 @@
 import 'package:app/main/config.dart';
-import 'package:app/utility/http/http_manager.dart';
 import 'package:app/utility/json/safe_num_converter.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'http_response_data.g.dart';
+import 'http_enum.dart';
 
 /// 响应模型
-@JsonSerializable(
-  genericArgumentFactories: true,
-  converters: [SafeIntConverter()],
-)
 class HttpResponseData<T> {
-  @JsonKey(name: HttpResponseKey.code)
   final int code;
-  @JsonKey(name: HttpResponseKey.message)
   final String message;
-  @JsonKey(name: HttpResponseKey.data)
   final T? data;
 
   HttpResponseData({required this.code, required this.message, this.data});
@@ -23,11 +14,22 @@ class HttpResponseData<T> {
   factory HttpResponseData.fromJson(
     Map<String, dynamic> json,
     T Function(Object? json) fromJsonT,
-  ) =>
-      _$HttpResponseDataFromJson<T>(json, fromJsonT);
+  ) {
+    final data = json[HttpResponseKey.data];
+    return HttpResponseData<T>(
+      code: const SafeIntConverter().fromJson(json[HttpResponseKey.code]),
+      message: json[HttpResponseKey.message] as String,
+      data: data == null ? null : fromJsonT(data),
+    );
+  }
 
-  Map<String, dynamic> toJson(Object? Function(T? value) toJsonT) =>
-      _$HttpResponseDataToJson<T>(this, toJsonT);
+  Map<String, dynamic> toJson(Object? Function(T? value) toJsonT) {
+    return <String, dynamic>{
+      HttpResponseKey.code: const SafeIntConverter().toJson(code),
+      HttpResponseKey.message: message,
+      HttpResponseKey.data: data == null ? null : toJsonT(data),
+    };
+  }
 
   @override
   String toString() {

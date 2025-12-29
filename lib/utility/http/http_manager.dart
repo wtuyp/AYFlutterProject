@@ -10,24 +10,6 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'interceptor/header_interceptor.dart';
 
-/// HTTP 请求方法
-enum HttpMethod {
-  get,
-  post,
-  delete,
-  put,
-}
-
-/// HTTP 状态码
-enum HttpResponseCode {
-  success(0),
-  tokenExpired(4031), //  token 过期
-  upgrade(100003), // 升级
-  ;
-
-  final int code;
-  const HttpResponseCode(this.code);
-}
 
 /// 网络请求管理，目前使用的是 Dio 框架
 class HttpManager {

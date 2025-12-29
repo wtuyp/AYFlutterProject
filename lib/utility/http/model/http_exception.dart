@@ -1,5 +1,5 @@
 
-
+/// HTTP 异常
 class HttpException implements Exception {
   final int code;
   final String message;
