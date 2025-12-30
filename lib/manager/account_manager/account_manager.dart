@@ -3,7 +3,7 @@
 import 'dart:convert';
 
 import 'package:app/manager/account_manager/account_info_model.dart';
-import 'package:app/utility/common/cache_util.dart';
+import 'package:app/utility/common/sp_util.dart';
 
 class AccountManagerKey {
   static const String accessToken = "account.token.access";
@@ -19,10 +19,10 @@ class AccountManager {
   AccountManager._internal();
 
   Future<void> loadData() async {
-    accessToken = await CacheUtil.getString(AccountManagerKey.accessToken);
-    refreshToken = await CacheUtil.getString(AccountManagerKey.refreshToken);
+    accessToken = await SpUtil.getString(AccountManagerKey.accessToken);
+    refreshToken = await SpUtil.getString(AccountManagerKey.refreshToken);
 
-    String? userInfoJson = await CacheUtil.getString(AccountManagerKey.userInfo);
+    String? userInfoJson = await SpUtil.getString(AccountManagerKey.userInfo);
     if (userInfoJson != null) {
       _accountInfoModel = UserModel.fromJson(jsonDecode(userInfoJson));
     }
@@ -35,9 +35,9 @@ class AccountManager {
   set accountInfoModel(UserModel? accountInfoModel) {
     _accountInfoModel = accountInfoModel;
     if (accountInfoModel != null) {
-      CacheUtil.saveString(AccountManagerKey.userInfo, jsonEncode(accountInfoModel.toJson()));
+      SpUtil.setString(AccountManagerKey.userInfo, jsonEncode(accountInfoModel.toJson()));
     } else {
-      CacheUtil.remove(AccountManagerKey.userInfo);
+      SpUtil.remove(AccountManagerKey.userInfo);
     }
   }
 
@@ -51,18 +51,18 @@ class AccountManager {
   set accessToken(String? token) {
     _accessToken = token;
     if (token != null) {
-      CacheUtil.saveString(AccountManagerKey.accessToken, token);
+      SpUtil.setString(AccountManagerKey.accessToken, token);
     } else {
-      CacheUtil.remove(AccountManagerKey.accessToken);
+      SpUtil.remove(AccountManagerKey.accessToken);
     }
   }
 
   set refreshToken(String? token) {
     _refreshToken = token;
     if (token != null) {
-      CacheUtil.saveString(AccountManagerKey.refreshToken, token);
+      SpUtil.setString(AccountManagerKey.refreshToken, token);
     } else {
-      CacheUtil.remove(AccountManagerKey.refreshToken);
+      SpUtil.remove(AccountManagerKey.refreshToken);
     }
   }
 

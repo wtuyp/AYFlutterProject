@@ -1,20 +1,20 @@
 
 
+import 'package:app/utility/common/hud_util.dart';
 import 'package:dio/dio.dart';
 
 class ErrorInterceptor extends Interceptor {
   void _showErrorHud(String message) {
-    // print(message);
+    HudUtil.showToast(message);
   }
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
     super.onError(err, handler);
 
-    final String message = handle(err);
-
     final bool enableErrorHud = err.requestOptions.extra['enableErrorHud'] ?? false;
     if (enableErrorHud) {
+      final String message = handle(err);
       _showErrorHud(message);
     }
   }

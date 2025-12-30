@@ -2,7 +2,6 @@
 
 import 'package:app/main/config.dart';
 import 'package:app/manager/account_manager/account_info_model.dart';
-import 'package:app/utility/common/paging/paging_data.dart';
 import 'package:app/utility/http/http_manager.dart';
 import 'package:app/utility/http/model/http_paging_data.dart';
 import 'package:app/utility/http/model/http_response_data.dart';
@@ -40,9 +39,7 @@ class AccountApi {
         "page": page,
         "size": size,
       },
-      fromJsonT: (json) => HttpPagingData.fromJson(json, (json) => UserModel.fromJson(json)),
+      fromJsonT: (json) => HttpPagingData.fromJson(json, (json) => UserModel.fromJson(json as Map<String, dynamic>)),
     );
   }
-
-
 }

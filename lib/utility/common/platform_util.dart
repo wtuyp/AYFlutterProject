@@ -1,36 +1,18 @@
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 
+/// 平台工具类
 class PlatformUtil {
-  static bool get isAndroid {
-    return !kIsWeb && Platform.isAndroid;
-  }
 
-  static bool get isIOS {
-    return !kIsWeb && Platform.isIOS;
-  }
+  static bool get isAndroid => !kIsWeb && Platform.isAndroid;
+  static bool get isIOS => !kIsWeb && Platform.isIOS;
+  static bool get isFuchsia => !kIsWeb && Platform.isFuchsia;
+  static bool get isLinux => !kIsWeb && Platform.isLinux;
+  static bool get isMacOS => !kIsWeb && Platform.isMacOS;
+  static bool get isWindows => !kIsWeb && Platform.isWindows;
+  static bool get isWeb => kIsWeb;
 
-  static bool get isFuchsia {
-    return !kIsWeb && Platform.isFuchsia;
-  }
-
-  static bool get isLinux {
-    return !kIsWeb && Platform.isLinux;
-  }
-
-  static bool get isMacOS {
-    return !kIsWeb && Platform.isMacOS;
-  }
-
-  static bool get isWindows {
-    return !kIsWeb && Platform.isWindows;
-  }
-
-  static bool get isWeb {
-    return kIsWeb;
-  }
-
+  /// 获取当前平台名称
   static String get platformName {
     if (isAndroid) return 'Android';
     if (isIOS) return 'iOS';
@@ -38,6 +20,7 @@ class PlatformUtil {
     if (isLinux) return 'Linux';
     if (isMacOS) return 'macOS';
     if (isWindows) return 'Windows';
-    return 'Web';
+    if (isWeb) return 'Web';
+    return 'Unknown';
   }
 }

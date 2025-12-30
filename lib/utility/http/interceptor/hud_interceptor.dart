@@ -1,21 +1,21 @@
 
 
+import 'package:app/utility/common/hud_util.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 /// HUD 拦截器
 class HudInterceptor extends Interceptor {
 
   void _showLoadingHud() {
-    SmartDialog.showLoading(msg: '加载中...');
+    HudUtil.showLoading(message: '加载中...');
   }
 
   void _hideLoadingHud() {
-    SmartDialog.dismiss();
+    HudUtil.dismiss();
   }
 
   void _showErrorHud(String message) {
-    SmartDialog.showToast(message);
+    HudUtil.showToast(message);
   }
 
   @override

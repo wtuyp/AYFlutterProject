@@ -18,16 +18,19 @@ class _HttpApi implements HttpApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<HttpResponseData<UserModel>> createBaby(String name) async {
+  Future<HttpResponseData<UserModel>> login({
+    required String phone,
+    required String password,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = {'name': name};
+    final _data = {'phone': phone, 'password': password};
     final _options = _setStreamType<HttpResponseData<UserModel>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/baby/create',
+            '/account/login',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -48,7 +51,7 @@ class _HttpApi implements HttpApi {
   }
 
   @override
-  Future<HttpResponseData<List<UserModel>>> getBabyList() async {
+  Future<HttpResponseData<List<UserModel>>> members() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -57,7 +60,7 @@ class _HttpApi implements HttpApi {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/baby/list',
+            '/account/members',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -84,14 +87,14 @@ class _HttpApi implements HttpApi {
   }
 
   @override
-  Future<HttpResponseData<HttpPagingData<UserModel>>> getBabyListPage(
+  Future<HttpResponseData<HttpPagingData<UserModel>>> pageMembers(
     int pageIndex,
     int pageSize,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
-      r'pageIndex': pageIndex,
-      r'pageSize': pageSize,
+      r'page': pageIndex,
+      r'size': pageSize,
     };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -100,7 +103,7 @@ class _HttpApi implements HttpApi {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/baby/list/page',
+            '/account/members/list',
             queryParameters: queryParameters,
             data: _data,
           )
