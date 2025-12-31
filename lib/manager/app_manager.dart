@@ -1,15 +1,15 @@
-
-
 import 'package:app/module/root/root_page.dart';
 import 'package:app/service/theme/theme_provider.dart';
+import 'package:app/utility/common/screem_util.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-final WidgetRef appRef = AppManager().ref;
-final BuildContext appTopContext = AppManager().topContext;
+final AppManager appManager = AppManager();
+final WidgetRef appRef = appManager.ref;
+final BuildContext appTopContext = appManager.topContext;
 
 /// 应用管理类
 class AppManager {
@@ -38,6 +38,7 @@ class AppManager {
 }
 
 extension AppManagerSetup on AppManager {
+
   /// 应用运行前的初始化
   Future<void> setupBeforeRun() async {
     // 初始化日期格式
@@ -68,20 +69,28 @@ class _MyAppState extends ConsumerState<MyApp> {
   void initState() {
     super.initState();
 
-    AppManager().ref = ref;
-    AppManager().topContext = context;
+    appManager.ref = ref;
+    appManager.topContext = context;
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'App',
-      home: widget.home,
-      navigatorObservers: [FlutterSmartDialog.observer],
-      builder: FlutterSmartDialog.init(),
-      theme: FlexThemeData.light(scheme: FlexScheme.blueWhale),
-      darkTheme: FlexThemeData.dark(scheme: FlexScheme.blueWhale),
-      themeMode: ref.watch(themeProvider),
+    ScreenUtil.update(context, uiDesignWidth: 375.0);
+    final media = MediaQuery.of(context);
+
+    return MediaQuery(
+      data: media.copyWith(
+        textScaler: TextScaler.linear(ScreenUtil.widthFactor),
+      ),
+      child: MaterialApp(
+        title: 'App',
+        home: widget.home,
+        navigatorObservers: [FlutterSmartDialog.observer],
+        builder: FlutterSmartDialog.init(),
+        theme: FlexThemeData.light(scheme: FlexScheme.blueWhale),
+        darkTheme: FlexThemeData.dark(scheme: FlexScheme.blueWhale),
+        themeMode: ref.watch(themeProvider),
+      ),
     );
   }
 }
